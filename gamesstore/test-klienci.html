@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head><meta charset="UTF-8" /><title>Test API - Klienci (CRUD)</title></head>
+<body>
+<h1>Test API - Klienci (CRUD)</h1>
+<input id="id" placeholder="ID (do edycji/usuwania)"/><br/>
+<input id="imie" placeholder="Imię"/><input id="nazwisko" placeholder="Nazwisko"/><br/>
+<input id="email" placeholder="Email"/><input id="telefon" placeholder="Telefon"/><br/>
+<input id="adres" placeholder="Adres"/><br/>
+<input id="data" placeholder="Data rejestracji (YYYY-MM-DD)"/><br/>
+<button onclick="dodaj()">Dodaj</button>
+<button onclick="pobierz()">Pobierz wszystkich</button>
+<button onclick="edytuj()">Edytuj</button>
+<button onclick="usun()">Usuń</button>
+<pre id="wynik"></pre>
+<script>
+const API = "klienci/";
+function pokaz(d) { document.getElementById("wynik").textContent = JSON.stringify(d, null, 2); }
+function dodaj() {
+fetch(API + "create.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        imie: imie.value,
+        nazwisko: nazwisko.value,
+        email: email.value,
+        telefon: telefon.value,
+        adres: adres.value,
+        data_rejestracji: data.value
+    })
+}).then(res => res.json()).then(pokaz);
+}
+function pobierz() {
+fetch(API + "read.php").then(res => res.json()).then(pokaz);
+}
+function edytuj() {
+fetch(API + "update.php", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        klient_id: parseInt(id.value),
+        imie: imie.value,
+        nazwisko: nazwisko.value,
+        email: email.value,
+        telefon: telefon.value,
+        adres: adres.value,
+        data_rejestracji: data.value
+    })
+}).then(res => res.json()).then(pokaz);
+}
+function usun() {
+fetch(API + "delete.php", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ klient_id: parseInt(id.value) })
+}).then(res => res.json()).then(pokaz);
+}
+</script>
+</body>
+</html>

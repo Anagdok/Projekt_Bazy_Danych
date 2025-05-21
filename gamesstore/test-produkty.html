@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head><meta charset="UTF-8" /><title>Test Produkty PDO</title></head>
+<body>
+<h1>Test API (Produkty - CRUD)</h1>
+<input id="id" placeholder="ID (do edycji/usuwania)"/><br/>
+<input id="nazwa" placeholder="Nazwa"/><input id="cena" placeholder="Cena"/><br/>
+<textarea id="opis" placeholder="Opis"></textarea><br/>
+<input id="data" placeholder="Data wydania (YYYY-MM-DD)"/><input id="ilosc" placeholder="Ilość w magazynie"/><br/>
+<button onclick="dodaj()">Dodaj</button>
+<button onclick="pobierz()">Pobierz wszystkie</button>
+<button onclick="edytuj()">Edytuj</button>
+<button onclick="usun()">Usuń</button>
+<pre id="wynik"></pre>
+<script>
+const API = "produkty/";
+function pokaz(d) { document.getElementById("wynik").textContent = JSON.stringify(d, null, 2); }
+function dodaj() {
+fetch(API + "create.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        nazwa: nazwa.value,
+        cena: parseFloat(cena.value),
+        opis: opis.value,
+        data_wydania: data.value,
+        ilosc_w_magazynie: parseInt(ilosc.value)
+    })
+}).then(res => res.json()).then(pokaz);
+}
+function pobierz() {
+fetch(API + "read.php").then(res => res.json()).then(pokaz);
+}
+function edytuj() {
+fetch(API + "update.php", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        produkt_id: parseInt(id.value),
+        nazwa: nazwa.value,
+        cena: parseFloat(cena.value),
+        opis: opis.value,
+        data_wydania: data.value,
+        ilosc_w_magazynie: parseInt(ilosc.value)
+    })
+}).then(res => res.json()).then(pokaz);
+}
+function usun() {
+fetch(API + "delete.php", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ produkt_id: parseInt(id.value) })
+}).then(res => res.json()).then(pokaz);
+}
+</script>
+</body>
+</html>
