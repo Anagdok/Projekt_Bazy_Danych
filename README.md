@@ -1,68 +1,58 @@
-# Dokumentacja projektu: Sklep z grami
+# Dokumentacja projektu: CrackGrilla
 
-## Cel projektu
-Stworzenie funkcjonalnego sklepu internetowego z grami wideo z wykorzystaniem następujących technologii:
-- **Frontend**: HTML, CSS
-- **Backend**: PHP
-- **Baza danych**: MySQL
+## Opis projektu
+CrackGrilla to nowoczesny sklep z grami wykorzystujący najnowsze technologie frontendowe i chmurową bazę danych. Aplikacja umożliwia przeglądanie gier, składanie zamówień oraz zarządzanie kontem użytkownika.
 
----
-## Zadania do wykonania
-
-### Baza danych
-
-#### Kluczowe tabele:
-Jest rozpisane na zdjeciu na discordzie
-
-#### Relacje:
-1. **Klienci → Zamówienia**: jeden-do-wielu (jeden klient może mieć wiele zamówień).
-2. **Zamówienia → Pozycje_Zamówienia**: jeden-do-wielu (jedno zamówienie może zawierać wiele pozycji).
-3. **Produkty → Pozycje_Zamówienia**: jeden-do-wielu (jeden produkt może być w wielu zamówieniach).
-4. **Produkty → platformy_produktu**: jeden-do-wielu (gra może być na wielu platformach).
-5. **Platformy → platformy_produktu**:  wiele-do-wielu (poprzez tabelę łączącą).
-6. **Produkty → Gatunki_produktu**: wiele-do-wielu (poprzez tabelę łączącą).
-7. **Gatunki_gier → Gatunki_produktu**: wiele-do-wielu (poprzez tabelę łączącą).
----
-
-
-### Backend
-1. **Wyszukiwarka produktów**:
-   - Implementacja rozbudowanej wyszukiwarki z wieloma filtrami (np. platforma, gatunek, cena).
-   - Możliwość łączenia filtrów (np. "RPG na PlayStation w cenie do 100 zł").
-2. **System zakupów**:
-   - Obsługa procesu zamówienia (dodawanie nowego zamówienia do bazy).
-   - Aktualizacja stanu magazynowego (zmniejszenie liczby dostępnych kopii po zakupie).
-3. **Historia zakupów**:
-   - Wyświetlanie historii zamówień dla zalogowanego klienta.
-   - Szczegóły zamówień (data, produkty, ceny).
+## Architektura technologiczna
 
 ### Frontend
-1. **Interfejs użytkownika**:
-   - Strona główna z listą produktów.
-   - Strona produktu ze szczegółami (opis, cena, platformy, gatunki)(raczej bez zdjęcia zobaczymy czy będzie czas je dodać).
-   - Koszyk zakupowy.
-   - Panel użytkownika (historia zakupów, dane konta).
-2. **Integracja z backendem**:
-   - Wyświetlanie danych z API (np. lista produktów, wyniki wyszukiwania).
-   - Obsługa formularzy (logowanie, rejestracja).
+1. **React z TypeScript**:
+   - Komponentowa struktura aplikacji
+   - Silne typowanie przez TypeScript
+   - Hooks do zarządzania stanem
+   - React Router do nawigacji
 
----
+2. **Vite**:
+   - Szybkie środowisko developerskie
+   - Optymalizacja budowania projektu
+   - Hot Module Replacement
 
-## Wymagania techniczne
-- **Baza danych**: MySQL z opisaną powyżej strukturą.
-- **Backend**: PHP z użyciem przygotowanych endpointów API.
-- **Frontend**: HTML, CSS.
+3. **Tailwind CSS**:
+   - Utility-first CSS framework
+   - Responsywny design
+   - Dark mode out-of-the-box
 
----
+4. **Lucide React**:
+   - Biblioteka ikon
+   - Tree-shakable komponenty
+   - Prosta customizacja
 
-## zaplanowany harmonogram prac (do 18 maja)
-1. **Backend**:
-   - Wdrożenie podstawowych endpointów (CRUD dla produktów, zamówień, klientów).
-   - Implementacja wyszukiwarki z filtrami.
-2. **Frontend**:
-   - Stworzenie szkieletu strony (HTML/CSS).
-   - Integracja z podstawowymi funkcjami backendu (np. wyświetlanie produktów).
-3. **Baza danych**:
-   - Utworzenie i wypełnienie tabel testowymi danymi.
+### Backend i baza danych
+1. **Supabase**:
+   - PostgreSQL jako baza danych
+   - Autentykacja przez magic links
+   - Realtime subscriptions
+   - Row Level Security
 
----
+2. **Supabase JavaScript Client**:
+   - Typowane zapytania
+   - Obsługa błędów
+   - Zarządzanie sesją
+   
+
+###Uwagi dodatkowe
+   - Projekt wykorzystuje podejście komponentowe
+   - Wszystkie zapytania do bazy danych są typowane przez TypeScript
+   - Stylowanie oparte o utility classes (Tailwind)
+   - Ikony są wczytywane dynamicznie (Lucide React)
+   
+###Rozwój projektu
+**Możliwe kierunki rozbudowy**:
+   - System ocen i recenzji gier
+   - Wyszukiwarka z zaawansowanymi filtrami
+   - Integracja z systemem płatności
+   
+## Wymagania systemowe
+- Node.js v18+
+- npm 9+
+- Konto Supabase (darmowy tier)
