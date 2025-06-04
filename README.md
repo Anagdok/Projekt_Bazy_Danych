@@ -40,13 +40,13 @@ CrackGrilla to nowoczesny sklep z grami wykorzystujący najnowsze technologie fr
    - Zarządzanie sesją
    
 
-###Uwagi dodatkowe
+### Uwagi dodatkowe
    - Projekt wykorzystuje podejście komponentowe
    - Wszystkie zapytania do bazy danych są typowane przez TypeScript
    - Stylowanie oparte o utility classes (Tailwind)
    - Ikony są wczytywane dynamicznie (Lucide React)
    
-###Rozwój projektu
+### Rozwój projektu
 **Możliwe kierunki rozbudowy**:
    - System ocen i recenzji gier
    - Wyszukiwarka z zaawansowanymi filtrami
